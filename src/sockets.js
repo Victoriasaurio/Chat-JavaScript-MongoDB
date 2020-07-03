@@ -36,7 +36,7 @@ module.exports = function(io) {
             updateNicknames(); //UPDATE LIST OF CONNECTED USERS
         });
 
-        //CONTAINS LIST OD CONNECTED USERS
+        //CONTAINS LIST OD CONNECTED USERS 
         function updateNicknames() {
             io.sockets.emit('usernames', nicknames);
         }
