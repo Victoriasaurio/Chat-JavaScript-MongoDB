@@ -2,8 +2,7 @@
 ```
 npm run dev
 ```
-## Execute 
+## Execute for dependencies
 ```
 npm install
 ```
-## For dependencies
