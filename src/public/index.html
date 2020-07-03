@@ -3,8 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>Chat público JavaScript</title>
-        <!--STYLE CSS OF BOOTSWATCH-->
+        <!--STYLE CSS OF BOOTSWATCH CDN-->
         <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+        <!-- FONT AWESOME CDN-->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+        integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+        crossorigin="anonymous"></script>
         <!--CONEXION FILE MAIN.CSS OF PUBLIC FOLDER-->
         <link rel="stylesheet" href="/css/main.css">
     </head>
@@ -15,26 +19,52 @@
             </div>
         </nav>
 
-        <div class="container">
-            <div class="col-md-8 mt-5">
-                <div class="card">
-                    <!--CARD HEADER-->
-                    <div class="card-header text-center">
-                        <h4>Chat HuasTechnology</h4>
-                    </div>
-                    <!--CARD BODY-->
-                    <div class="card-body" id="chat"></div>
-                    <!--CARD FOOTER-->
-                    <form id="message-form" class="card-footer">
-                        <div class="input-group"> <!--INPUT TEXT AND INPUT BUTTON IN THE SAME LINE OF CODE-->
-                            <input type="text" id="message" class="form-control mt-1" placeholder="Write here" autofocus>
-                            <div class="input-group-append">
-                                <input type="submit" class="btn btn-primary mx-3">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        <!--LOGIN-->
+        <div class="card col-md-4 mx-auto mt-5" id="nickWrap">
+            <div class="card-header text-center"><h3>Enter your Username</h3></div>
+            <p id="nickError"></p>
+            <div class="card-body">
+                <form id="nickForm">
+                    <input type="text" id="nickname" class="form-control" autofocus>
+                    <button type="submit" class="btn btn-primary mt-3">
+                        <i class="fas fa-location-arrow"></i> Send
+                    </button>
+                </form>
             </div>
+        </div>
+
+        <!--CHAT-->
+        <div class="container" id="contentWrap">
+            <div class="row">
+                <div class="col-md-8 mt-5">
+                    <div class="card">
+                        <!--CARD HEADER-->
+                        <div class="card-header text-center">
+                            <h4>Chat HuasTechnology</h4>
+                        </div>
+                        <!--CARD BODY-->
+                        <div class="card-body" id="chat"></div>
+                        <!--CARD FOOTER-->
+                        <form id="message-form" class="card-footer">
+                            <div class="input-group"> <!--INPUT TEXT AND INPUT BUTTON IN THE SAME LINE OF CODE-->
+                                <input type="text" id="message" class="form-control mt-1" placeholder="Write here" autofocus>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary mx-3">
+                                        <i class="fas fa-location-arrow"></i> Send
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--LIST OF USERS CONNECTED-->
+                <div class="card col-md-3 mt-5">
+                    <div class="card-header"><h3>Users</h3></div>
+                    <div class="card-body">
+                        <div id="usernames"></div>
+                    </div>
+                </div>
+            </div>  
         </div>
 
         <!--JQUERY-->
