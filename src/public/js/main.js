@@ -8,6 +8,30 @@ $(function() {
     const $message = $('#message');
     const $chat = $('#chat');
 
+    //'DOM' ELEMENTS FROM THE NICKNAME FORM
+    const $nickForm = $('#nickForm');
+    const $nickError = $('#nickError');
+    const $nickname = $('#nickname');
+
+    const $usernames = $('#usernames');
+
+    //EVENT FOR THE USER
+    $nickForm.submit(e => {
+        e.preventDefault();
+        socket.emit('new user', $nickname.val(), data => {
+            if (data) {
+                $('#nickWrap').hide(); //HIDE THE FORM-USERNAME
+                $('#contentWrap').show(); //SHOW THE FORM-CHATS
+            } else {
+                $nickError.html(`
+                <div class="alert alert-danger">
+                    That username already exist.
+                </div>`);
+            }
+            $nickname.val('');
+        });
+    });
+
     //EVENTS
     $messageForm.submit(e => {
         e.preventDefault();
@@ -17,7 +41,15 @@ $(function() {
 
     //DATA OF SERVER
     socket.on('new message', function(data) {
-        $chat.append(data + '<br/>'); //SHOW MESSAGE IN THE CARD-BODY AND <br/> GIVES THE END OF LINE 
+        $chat.append('<b>' + data.nick + '</b>:' + data.msg + '<br/>'); //SHOW MESSAGE IN THE CARD-BODY AND <br/> GIVES THE END OF LINE 
+    });
+
+    socket.on('usernames', data => {
+        let html = '';
+        for (let i = 0; i < data.length; i++) { //SCROLLS THE LIST OF CONNECTED USERNAMES
+            html += `<p><i class="fas fa-user"></i> ${data[i]}</p>`
+        }
+        $usernames.html(html); //ADD ALL USERNAMES AT CARD-USERNAMES WITH LABEL <p>
     });
 })
 
