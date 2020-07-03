@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Chat público JavaScript</title>
+        <!--STYLE CSS OF BOOTSWATCH-->
+        <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+        <!--CONEXION FILE MAIN.CSS OF PUBLIC FOLDER-->
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="/">Chat público</a>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="col-md-8 mt-5">
+                <div class="card">
+                    <!--CARD HEADER-->
+                    <div class="card-header text-center">
+                        <h4>Chat HuasTechnology</h4>
+                    </div>
+                    <!--CARD BODY-->
+                    <div class="card-body" id="chat"></div>
+                    <!--CARD FOOTER-->
+                    <form id="message-form" class="card-footer">
+                        <div class="input-group"> <!--INPUT TEXT AND INPUT BUTTON IN THE SAME LINE OF CODE-->
+                            <input type="text" id="message" class="form-control mt-1" placeholder="Write here" autofocus>
+                            <div class="input-group-append">
+                                <input type="submit" class="btn btn-primary mx-3">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--JQUERY-->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <!--REQUIRE CONEXION SOCKET.IO-->
+        <script src="/socket.io/socket.io.js"></script>
+        <!--CONEXION FILE MAIN.JS OF PUBLIC FOLDER-->
+        <script src="/js/main.js"></script>
+    </body>
+</html>
