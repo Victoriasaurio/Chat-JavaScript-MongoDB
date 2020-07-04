@@ -10,3 +10,12 @@ body {
 #contentWrap {
     display: none;
 }
+
+.error {
+    color: red;
+}
+
+.whisper {
+    color: grey;
+    font-style: italic;
+}
