@@ -57,8 +57,20 @@ $(function() {
 
     //SHOW PRIVATE MESSAGE
     socket.on('whisper', data => {
-        $chat.append(`<p class="whisper"><b>${data.nick}:</b>${data.msg}</p>`);
+        displayMsg(data);
+    });
+
+    //RETURN OLD MESSAGE OF DB
+    socket.on('load old msg', msg => {
+        for (let i = 0; i < msg.length; i++) {
+            displayMsg(msg[i]);
+        }
     })
+
+    //FUNCTION SHOW MESSAGE
+    function displayMsg(data) {
+        $chat.append(`<p class="whisper"><b>${data.nick}:</b>${data.msg}</p>`);
+    }
 })
 
 //SELECTOR DE JQuery IS '$'
