@@ -47,6 +47,7 @@ $(function() {
         $chat.append('<b>' + data.nick + '</b>:' + data.msg + '<br/>'); //SHOW MESSAGE IN THE CARD-BODY AND <br/> GIVES THE END OF LINE 
     });
 
+    //SHOW USERS IN THE CARD-USERS
     socket.on('usernames', data => {
         let html = '';
         for (let i = 0; i < data.length; i++) { //SCROLLS THE LIST OF CONNECTED USERNAMES

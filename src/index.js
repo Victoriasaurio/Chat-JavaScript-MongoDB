@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const app = express();
 //CHANGE PROPERTIES OF APP TO HTTP, BECAUSE WE NEED A SERVER
 const server = http.createServer(app);
-//CONEXION CREATED FOR CHAT. ALLOW YOU TO SEND DATA FROM CLIENT TO SERVER
+//CONNECTION CREATED FOR CHAT. ALLOW YOU TO SEND DATA FROM CLIENT TO SERVER
 const io = socketIO.listen(server);
 
 //DB CONNECTION
@@ -21,10 +21,10 @@ mongoose.connect('mongodb://localhost/chat-database')
 //SETTINGS
 app.set('port', process.env.PORT || 3000);
 
-//CONEXION WITH THE FILE SOCKETS. PASSING THE PARAMETER 'IO'
+//CONNECTION WITH THE FILE SOCKETS. PASSING THE PARAMETER 'IO'
 require('./sockets')(io);
 
-//CONEXION WITH PUBLIC FOLDER 
+//CONNECTION WITH PUBLIC FOLDER 
 app.use(express.static(path.join(__dirname, 'public')));
 
 //PORT

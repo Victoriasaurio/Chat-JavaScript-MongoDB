@@ -51,7 +51,7 @@ module.exports = function(io) {
                 });
                 await newMsg.save(); //SAVE DATA IN THE DB
 
-                io.sockets.emit('new message', {
+                io.sockets.emit('new message', { //TWO PARAMETERS ('NAME_ACTION', 'DATA')
                     msg: data,
                     nick: socket.nickname
                 }); //SERVER TRANSMITS THE MESSAGE AND USER FROM AN OBJECT TO ALL CLIENTSS
