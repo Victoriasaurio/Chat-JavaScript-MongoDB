@@ -35,7 +35,10 @@ $(function() {
     //EVENTS
     $messageForm.submit(e => {
         e.preventDefault();
-        socket.emit('send message', $message.val()); //SEND VALUE OF INPUT TO SERVER
+        socket.emit('send message', $message.val(), data => {
+            //DATA ERROR
+            $chat.append(`<p class="error">${data}</p>`)
+        }); //SEND VALUE OF INPUT TO SERVER
         $message.val(''); //CLEAR THE INPUT FORM
     });
 
@@ -51,6 +54,11 @@ $(function() {
         }
         $usernames.html(html); //ADD ALL USERNAMES AT CARD-USERNAMES WITH LABEL <p>
     });
+
+    //SHOW PRIVATE MESSAGE
+    socket.on('whisper', data => {
+        $chat.append(`<p class="whisper"><b>${data.nick}:</b>${data.msg}</p>`);
+    })
 })
 
 //SELECTOR DE JQuery IS '$'
