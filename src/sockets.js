@@ -2,11 +2,15 @@
 
 //SOCKET LISTEN NEW CONEXION OF CLIENT
 //SOCKET SERVER
+const Chat = require('./models/chat');
 module.exports = function(io) {
     let users = {};
 
-    io.on('connection', socket => {
+    io.on('connection', async socket => {
         console.log('new client conected');
+
+        let messages = await Chat.find({}).limit(8); //FIND LAST 8 MESSAGE
+        socket.emit('load old msg', messages);
 
         socket.on('new user', (data, cb) => {
             if (data in users) { //(nicknames.indexOf(data) != -1)  .indexOf RETURN AN INDEX LIKE [0,1,2,...] || -1 MEANS: NEW USER  
@@ -19,7 +23,7 @@ module.exports = function(io) {
             }
         });
 
-        socket.on('send message', (data, cb) => { //DATA OF ONE CLIENT
+        socket.on('send message', async(data, cb) => { //DATA OF ONE CLIENT
             // /w vic mensaje....
             var msg = data.trim(); //REMOVE EXTRA SPACES FROM TEXTS
 
@@ -41,6 +45,12 @@ module.exports = function(io) {
                     cb('Error! Please enter your message');
                 }
             } else {
+                var newMsg = new Chat({
+                    msg,
+                    nick: socket.nickname
+                });
+                await newMsg.save(); //SAVE DATA IN THE DB
+
                 io.sockets.emit('new message', {
                     msg: data,
                     nick: socket.nickname
