@@ -5,11 +5,18 @@ const path = require('path');
 const express = require('express');
 const socketIO = require('socket.io');
 
+const mongoose = require('mongoose');
+
 const app = express();
 //CHANGE PROPERTIES OF APP TO HTTP, BECAUSE WE NEED A SERVER
 const server = http.createServer(app);
 //CONEXION CREATED FOR CHAT. ALLOW YOU TO SEND DATA FROM CLIENT TO SERVER
 const io = socketIO.listen(server);
+
+//DB CONNECTION
+mongoose.connect('mongodb://localhost/chat-database')
+    .then(db => console.log('Database is connected'))
+    .catch(err => console.log(err))
 
 //SETTINGS
 app.set('port', process.env.PORT || 3000);
